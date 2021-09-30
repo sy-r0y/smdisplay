@@ -15,5 +15,11 @@ urlpatterns = [
     # 1st argument of path() is a string that specifies URL endpoint
     # 2ns argument of path() specifies the VIEW FUNCTION
     path('', views.index),
+    path('buynow/', views.buynow),
+    path('productdetail', views.product_detail, name='product-detail'),
+    path('addtocart', views.add_to_cart, name='add-to-cart'),
+    path('buynow', views.buy_now, name='buy-now'),
+    path('checkout', views.checkout, name='checkout'),
+
     
 ]

@@ -10,5 +10,19 @@ from django.http import HttpResponse
 
 
 def index(request):
-    response = HttpResponse('Boards Index View Function')
-    return response
+    return render(request, 'home.html')
+
+def buynow(request):
+    return render(request, 'buynow.html')
+
+def product_detail(request):
+    return render(request, 'productdetail.html')
+
+def add_to_cart(request):
+    return render(request, 'addtocart.html')
+
+def buy_now(request):
+    return render(request, 'buynow.html')
+
+def checkout(request):
+    return render(request, 'checkout.html')

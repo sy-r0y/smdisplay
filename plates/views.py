@@ -5,6 +5,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    response = HttpResponse('Plates Index View Function')
-    return response
+    return render(request, 'platehome.html')
 
