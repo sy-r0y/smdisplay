@@ -10,12 +10,12 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 BOARD_CHOICES=(
     ('magnetic','MagnetiC Board'), ('nonmagnetic','Non-Magnetic'),
-    ('marker','Marker Board'), ('pin','Soft Board'),
+    ('marker','Marker Board'), ('pinup','Soft Board'),
     ('easel','Easel Board'), ('glass','Glass Board')
 ) 
 CATEGORY_CHOICES=(
-    ('magnetic','Magnetic'), ('nonmangetic','Non-Magnetic'),
-    ('pin','Soft Board'), ('marker','Marker Board'),
+    ('magnetic','Magnetic'), ('nonmagnetic','Non-Magnetic'),
+    ('pinup','Soft Board'), ('marker','Marker Board'),
     ('mdf', 'MDF Board')
 )
 
@@ -27,14 +27,12 @@ STATUS_CHOICES= (
 
 class Customer(models.Model):
     # Customer model would have many-to-one relation with User
-
     user= models.ForeignKey(User, on_delete=models.CASCADE)
     name= models.CharField(max_length=200)
     locality= models.CharField(max_length=200)
     city= models.CharField(max_length=50)
     zipcode= models.IntegerField()
     boards= models.CharField(choices=BOARD_CHOICES, max_length=50)
-
     def __str__(self):
         return str(self.id)
 
@@ -45,9 +43,8 @@ class Product(models.Model):
     discount_price= models.FloatField()
     description= models.TextField()
     brand= models.CharField(max_length=100)
-    category= models.CharField(choices=CATEGORY_CHOICES, max_length=20)
+    category= models.CharField(choices=CATEGORY_CHOICES, max_length=50)
     product_image= models.ImageField(upload_to= 'productimg')
-
     def __str__(self):
         return str(self.id)
 

@@ -1,16 +1,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import View
+from .models import Customer, Product, Cart, OrderPlaced
 
 # Create your views here.
+# FUNCTION BASED VIEW OR CLASS BASED VIEW
 # What should the user see when they navigate to a certain page
 
-# define your VIEW FUNCTIONs
+# define your VIEW FUNCTIONS or VIEW CLASSES
 
 # all VIEW FUNCTION take in the parameter 'request' ie HttpRequest that is passed to this view function
 
 
-def index(request):
-    return render(request, 'home.html')
+# def index(request):
+#    return render(request, 'home.html')
+
+class BoardHomeView(View):  # inherits the View class
+    def get(self, request):
+        magnetic = Product.objects.filter(category='magnetic')
+        nonmagnetic = Product.objects.filter(category='nonmagnetic')
+        marker = Product.objects.filter(category='marker')
+        pinup = Product.objects.filter(category='pinup')
+        mdf = Product.objects.filter(category='mdf')
+        return render(request, 'home.html', {'magnetic': magnetic, 'nonmagnetic': nonmagnetic,
+                                                     'marker': marker, 'pinup': pinup,
+                                                     'mdf': mdf}
+                     )
+
 
 def product_detail(request):
     return render(request, 'productdetail.html')
