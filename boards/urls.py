@@ -9,6 +9,8 @@
 
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path() maps url to view function. 1st argument is url endpoint
@@ -27,6 +29,5 @@ urlpatterns = [
     path('changepassword', views.change_password, name='change-password'),
     path('orders', views.orders, name='orders'),
     path('mobile', views.mobile, name='mobile'),
-
-    
-]
+  
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
