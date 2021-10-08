@@ -18,7 +18,7 @@ urlpatterns = [
     # 2ns argument of path() specifies the VIEW FUNCTION
     path('', views.BoardHomeView.as_view(), name='home'),
     path('buynow', views.buy_now, name='buy-now'),
-    path('productdetail', views.product_detail, name='product-detail'),
+    path('productdetail/<int:pk>', views.ProductDetailView.as_view(), name='product-detail'),
     path('addtocart', views.add_to_cart, name='add-to-cart'),
     path('checkout', views.checkout, name='checkout'),
     path('profile', views.profile, name='profile'),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('home', views.BoardHomeView.as_view(), name='home'),
     path('changepassword', views.change_password, name='change-password'),
     path('orders', views.orders, name='orders'),
-    path('mobile', views.mobile, name='mobile'),
+    path('mobile/<slug:category>', views.MobileView.as_view(), name='mobiledata'),
+    path('mobile', views.MobileView.as_view(), name='mobile'), 
   
-] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+] 

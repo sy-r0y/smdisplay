@@ -39,8 +39,11 @@
              </a>
              <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
             
-               <li><a class="dropdown-item" href="{% url 'mobile' %}">Soft BOARDS</a></li>
-               <li><a class='dropdown-item' href="{% url 'mobile' %}">Marker BOARDS</a></li>
+               <li><a class="dropdown-item" href="{% url 'mobiledata' 'magnetic' %}">Magnetic BOARDS</a></li>
+               <li><a class='dropdown-item' href="{% url 'mobiledata' 'nonmagnetic' %}">Non-Magnetic BOARDS</a></li>
+               <li><a class='dropdown-item' href="{% url 'mobiledata' 'pinup' %}">Pinup Boards</a></li>
+               <li><a class='dropdown-item' href="{% url 'mobiledata' 'mdf' %}">MDF Boards</a></li>
+
              </ul>
            </li>
            <li class="nav-item dropdown">

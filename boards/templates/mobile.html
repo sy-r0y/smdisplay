@@ -7,10 +7,24 @@
 <div class="container my-5">
  <div class="row">
   <div class="col-sm-3">
-   Side Bar for filter
+   <div class='list-group'>
+    <a href="{% url 'mobile' %}" class="list-group-item-action" aria-currents="true">All Products</a>
+    <a href="{% url 'mobiledata' 'magnetic' %}" class="list-group-item-action" aria-currents="true">Magnetic</a>
+    <a href="{% url 'mobiledata' 'nonmagnetic' %}" class="list-group-item-action" aria-currents="true">Non-Magnetic</a>
+    <a href="{% url 'mobiledata' 'mdf' %}" class="list-group-item-action" aria-currents="true">MDF</a>
+    <a href="{% url 'mobiledata' 'pinup' %}" class="list-group-item-action" aria-currents="true">Pin-Up</a>
+    <a href="{% url 'mobiledata' 'below' %}" class="list-group-item-action" aria-currents="true">Below 3000</a>
+    <a href="{% url 'mobiledata' 'above' %}" class="list-group-item-action" aria-currents="true">Above 3000</a>
+    </div>
   </div>
+  <div class='col-sm-8'>
+  {% for mobile in mobiles %}
   <div class="col-sm-8 offset-sm-1">
-   Product List
+   <a href="{% url 'product-detail' mobile.id %}" class='btn'>
+   <h3> {{mobile.title}} @ {{mobile.selling_price}}</h3>
+   </a>
+  </div>
+  {% endfor %}
   </div>
  </div>
 </div>

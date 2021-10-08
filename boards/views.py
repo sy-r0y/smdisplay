@@ -26,10 +26,11 @@ class BoardHomeView(View):  # inherits the View class
                                                      'marker': marker, 'pinup': pinup,
                                                      'mdf': mdf}
                      )
-
-
-def product_detail(request):
-    return render(request, 'productdetail.html')
+class ProductDetailView(View):
+    def get(self, request, pk):
+        product= Product.objects.get(pk=pk)
+        # print(product.id)
+        return render(request, 'productdetail.html', {'product':product})
 
 def add_to_cart(request):
     return render(request, 'addtocart.html')
@@ -58,5 +59,16 @@ def change_password(request):
 def orders(request):
     return render(request, 'orders.html')
 
-def mobile(request):
-    return render(request, 'mobile.html')
+class MobileView(View):
+    def get(self, request, category=None):
+        #mobiles=[]
+        if category==None:
+            mobiles=Product.objects.filter(category='magnetic')
+        elif category== 'magnetic' or category=='nonmagnetic' or category=='pinup' or category=='mdf':
+            mobiles=Product.objects.filter(category=category)
+        elif category=='below':
+            mobiles=Product.objects.filter(discount_price__lt=3000)
+        elif category=='above':
+            mobiles=Product.objects.filter(discount_price__gt=3000)
+                
+        return render(request, 'mobile.html', {'mobiles':mobiles})
